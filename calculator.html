@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="UTF-8" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title> Calculator App </title>
+
+		<style>
+
+			*, 
+
+			::before, 
+
+			::after {
+
+
+
+				padding: 0;
+
+				margin: 0;
+
+				box-styling: border-box;
+
+			}
+
+			
+
+			body {
+
+				background: #000;
+
+				height: 100vh;
+
+				color: #fff;
+
+				display: flex;
+
+				align-items: center;
+
+				justify-content: center;
+
+			}
+
+			.container {
+
+				width: 385px;
+
+				height: 520px;
+
+				border: 3px solid #fff;
+
+				background: #111;
+
+				color: #000;
+
+				border-radius: 16px;
+
+				box-shadow: 10px 14px 44px #333;
+
+				display: flex;
+
+				flex-direction: column;
+
+				justify-content: center;
+
+				align-items: center;
+
+				
+
+				
+
+			}
+
+			.display {
+
+				background: #000;
+
+				margin: 36px;
+
+				width: 70%;
+
+				height: 52px;
+
+				color: #fff;
+
+				font-size: 32px;
+
+				border-radius: 6px;
+
+				display: flex;
+
+				align-items: center;
+
+				justify-content: flex-end;
+
+				letter-spacing: 2px;
+
+				padding: 4px;
+
+			}
+
+
+
+			.button {
+
+				display: grid;
+
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+
+				place-content: center;
+
+				gap: 10px;
+
+				padding: 10px;
+
+				width: 80%;
+
+			}
+
+			.btn {
+
+				width: 52px;
+
+				height: 52px;
+
+				border: 2px solid #333;
+
+				border-radius: 8px;
+
+				text-align: center;
+
+				letter-spacing: 0.5px;
+
+				color: #888;
+
+				font-family: Arial;
+
+				display: flex;
+
+				align-items: center;
+
+				justify-content: center;
+
+				cursor: pointer;
+
+				box-shadow: 1px 3px 5px #999;
+
+				font-size: 18px;
+
+				background: #000;
+
+				font-weight: 500;
+
+				transition: 0.3s ease-in;
+
+			}
+
+			.btn:hover {
+
+				border: 2px solid #fff;
+
+				background: #112;
+
+				box-shadow: 1px 3px 5px #333;
+
+				color: #fff;
+
+			}
+
+			.red {
+
+				color: red;
+
+				font-size: 24px;
+
+				border: 2px solid #111;
+
+				transition: 0.3s ease-in;
+
+			}
+
+			.red:hover {
+
+				background: #fff;
+
+				border: 2px solid #fff;
+
+				color: red;
+
+			}
+
+			.white {
+
+				color: #002;		
+
+				background: #fff;
+
+				font-size: 26px;
+
+				border: 2px solid #222;
+
+				transition: 0.3s ease-in;
+
+			}
+
+			
+
+			.white:hover {
+
+				border: 2px solid #fff;
+
+				background: #fff;
+
+				color: #000;
+
+			}
+
+			
+
+			.off {
+
+				color: #fff;		
+
+				background: green;
+
+				font-size: 22px;
+
+				border: 2px solid green;
+
+				transition: 0.3s ease-in;
+
+			}
+
+			.off:hover {
+
+				background: green;
+
+				border: 2px solid green;
+
+				color: #fff;
+
+			}
+
+			.green {
+
+				color: #fff;
+
+				background: green;
+
+				border: 2px solid green;
+
+			}
+
+
+
+			#blink {
+
+				animation-name: blinks;
+
+				animation-duration: 1s;
+
+				animation-delay: 0.1s;
+
+				animation-iteration-count: infinite;
+
+			}
+
+			@keyframes blinks {
+
+				0%{
+
+					opacity: 0;
+
+				}
+
+				
+
+				100%{
+
+					opacity: 1;
+
+				}
+
+			}
+
+			
+
+		</style>
+
+		
+
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<div class="display">
+
+				<span id="output"></span>
+
+				<span id="blink"> </span>
+
+			</div>
+
+
+
+				<div class="button">
+
+					<input type="button" value="+" class="btn red arit">
+
+					<input type="button" value="/" class="btn red arit">
+
+					<input type="button" value="*" class="btn red arit">
+
+					<input type="button" value="-" class="btn red arit">
+
+					<input type="button" value="9" class="btn arit">
+
+					<input type="button" value="8" class="btn arit">
+
+					<input type="button" value="7" class="btn arit">
+
+					<input type="button" value="AC" class="btn red" onclick = "output.textContent = ''">
+
+					<input type="button" value="6" class="btn arit">
+
+					<input type="button" value="5" class="btn arit">
+
+					<input type="button" value="4" class="btn arit">
+
+					<input type="button" value="DE" class="btn red"  onclick = "output.textContent = output.textContent.toString().slice(0, -1)">
+
+					<input type="button" value="3" class="btn arit">
+
+					<input type="button" value="2" class="btn arit">
+
+					<input type="button" value="1" class="btn arit">
+
+					<input type="button" value="ON" class="btn off" id="active">
+
+					<input type="button" value="0" class="btn arit">
+
+					<input type="button" value="00" class="btn arit">
+
+					<input type="button" value="." class="btn arit">
+
+					<input type="button" value="=" class="btn white" id="equal" onclick="output.textContent = eval(output.textContent).toString().slice(0,10)">
+
+				</div>
+
+			</div>
+
+	</body>
+
+	<script>
+
+		let display = document.getElementById("output");
+
+let btns = document.querySelectorAll(".arit");
+
+let blink = document.getElementById("blink");
+
+				
+
+
+
+
+
+			const operate = () => {
+
+										for(let i = 0; i < btns.length; i++){
+
+									
+
+											btns[i].addEventListener("click", function(){
+
+												if(display.textContent.length <= 10){
+
+													display.textContent += btns[i].value;
+
+												} else {
+
+													alert("Exceeding Character Limit!")
+
+												}
+
+											})
+
+										}
+
+									}
+
+
+
+			
+
+			let active = document.getElementById("active");
+
+			
+
+			function activeSwitch (){
+
+					if(active.value === "ON"){
+
+							active.addEventListener("click", function(){
+
+								if (active.value === "ON"){
+
+									active.value = "OFF";
+
+									active.style.background = "red";
+
+									active.style.color = "#fff";
+
+									active.style.border = "2px solid red";
+
+									
+
+									blink.textContent = "|";
+
+						
+
+									operate();
+
+								}
+
+								else if(active.value === "OFF"){
+
+									active.value = "ON";
+
+									active.style.background = "green";
+
+									active.style.color = "#fff";
+
+									active.style.border = "2px solid green";
+
+									
+
+									location.reload();
+
+									
+
+								}
+
+							})
+
+					} 
+
+			}
+
+				
+
+				activeSwitch();
+
+			
+
+	</script>
+
+      </html
